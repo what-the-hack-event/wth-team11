@@ -2,6 +2,8 @@ name : Nat First Workflow
 
 on:
    workflow_dispatch:
+   issues:
+      type: [opened,edited,milestoned]
    
 jobs:
   job1:
