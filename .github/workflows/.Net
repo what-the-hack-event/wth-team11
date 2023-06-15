@@ -1,4 +1,4 @@
-name: .NET
+name: .NET workflow
 on:
   push:
     branches: [ main ]
