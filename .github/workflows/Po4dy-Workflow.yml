@@ -14,5 +14,5 @@ jobs:
       - name: Cow Says
         uses: mscoutermarsh/cowsays-action@master
         with:
-          text: 'ship ship ship!'
-          color: 'red'
+          text: 'Mooo mooo Moooo!'
+          color: 'Magenta'
