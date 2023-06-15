@@ -5,6 +5,9 @@ on:
   issues:
     types:
       - opened
+
+env:
+  Test_Var: My firs env Variable
   
 jobs:
   job1:
@@ -15,6 +18,8 @@ jobs:
       run: echo "Running Step One!"
     - name: Step Two 
       run: echo "Running Step Two!"
+    - name: Step Three 
+      run: echo "Testing Varible - $Test_Var"
       
   job2:
     runs-on: ubuntu-latest
