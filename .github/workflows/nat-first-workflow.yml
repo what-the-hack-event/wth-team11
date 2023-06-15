@@ -2,6 +2,7 @@ name : Nat First Workflow
 
 on:
    workflow_dispatch:
+   
 jobs:
   job1:
      runs-on: ubuntu-latest
@@ -15,8 +16,8 @@ jobs:
   job2:
    runs-on: ubuntu-latest
      
-     steps:
-       - name: Ship Cows
+   steps:
+   - name: Ship Cows
      uses: mscoutermarsh/cowsays-action@master
      with:
         text: 'ship ship ship!'
