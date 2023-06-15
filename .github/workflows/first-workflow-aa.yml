@@ -1,11 +1,11 @@
 name: afeez-first-workflow
 
 on:
-#   workflow_dispatch
+  workflow_dispatch
   # issues:
   #   types:
   #     - opened
-  push
+  # push
 
 env:
   Test_Var: My first env Variable
