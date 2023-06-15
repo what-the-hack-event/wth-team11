@@ -20,5 +20,5 @@ jobs:
     - name: Cowsays
       uses: mscoutermarsh/cowsays-action@master
       with:
-        text: 'ship ship ship!'
-        color: 'red'
+        text: 'ship ship ship edited!'
+        color: 'blue'
