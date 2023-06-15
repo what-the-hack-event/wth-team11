@@ -30,7 +30,7 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZUREREPONAME }}
-          template: ./container-webapp-template.json
+          template: ./ARM-Templates/container-webapp-template.json
           parameters: storageAccountType=Standard_LRS
 
 
