@@ -1,16 +1,13 @@
-name:
- job1
+name : First Workflow
 
 on:
- workflow_dispatch:
-
+   workflow_dispatch:
 jobs:
-  check-bats-version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+  job1:
+     runs-on: ubuntu-latest
+     
+     steps:
+       - name: Step First
+         run: echo "Running First Step!"
+       - name: Step Two
+         run: echo "Running Second Step!"
