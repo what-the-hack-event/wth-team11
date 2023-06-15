@@ -2,6 +2,8 @@ name : First Workflow jg
 
 on:
    workflow_dispatch:
+   issues:
+    types: opened
 jobs:
   job1:
      runs-on: ubuntu-latest
