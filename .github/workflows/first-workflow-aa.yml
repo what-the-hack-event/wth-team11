@@ -29,5 +29,5 @@ jobs:
     - name: Cowsays
       uses: mscoutermarsh/cowsays-action@master
       with:
-        text: "ship ship ship edited!- $Test_Var"
+        text: "ship ship ship edited!-${{ env.Test_Var }}"
         color: 'blue'
