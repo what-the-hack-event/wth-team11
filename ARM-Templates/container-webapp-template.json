@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "webAppName": {
-            "defaultValue": "wth11devops-dev",
+            "defaultValue": "wth11devops[variables('targetEnv')]",
             "type": "String"
         },
         "hostingPlanName": {

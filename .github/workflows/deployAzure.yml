@@ -1,6 +1,9 @@
 name: Azure ARM
 on: [push]
 
+env:
+    targetEnv: test
+
 jobs:
     build-and-deploy:
       runs-on: ubuntu-latest
