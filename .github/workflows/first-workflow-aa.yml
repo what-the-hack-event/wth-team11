@@ -12,12 +12,13 @@ jobs:
       run: echo "Running Step One!"
     - name: Step Two 
       run: echo "Running Step Two!"
-#   job2:
-#     runs-on: ubuntu-latest
+      
+  job2:
+    runs-on: ubuntu-latest
     
-#     steps: 
-#     - name: Step One 
-#       run: echo "Running Step One!"
-#     - name: Step Two 
-#       run: echo "Running Step Two!"
-    
+    steps:
+    - name: Cowsays
+      uses: mscoutermarsh/cowsays-action@master
+      with:
+        text: 'ship ship ship!'
+        color: 'red'
