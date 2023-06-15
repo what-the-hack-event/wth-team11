@@ -12,9 +12,11 @@ jobs:
        - name: Step Two
          run: echo "Running Second Step!"
  job2:
-  runs on: ubuntu-latest
-  steps:
-   - name: step first
-     run: 
-   - name:
-     run:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Cowsays
+      uses: mscoutermarsh/cowsays-action@master
+      with:
+        text: 'ship ship ship'
+        color: 'red'
