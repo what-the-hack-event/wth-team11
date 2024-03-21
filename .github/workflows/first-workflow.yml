@@ -2,6 +2,9 @@ name: CI
 
 on:
     workflow_dispatch:
+    issues:
+        types:
+            - opened
 
 jobs:
     job1:
@@ -9,6 +12,7 @@ jobs:
         steps:
             - run: echo "step1"
             - run: echo "step2"
+
     job2:
         name: CowAction
         needs: job1
@@ -16,5 +20,5 @@ jobs:
         steps:
             - uses: mscoutermarsh/cowsays-action@master
               with:
-                text: 'Giannis and Vijay say Be!'
-                color: 'white'
+                    text: 'Giannis and Vijay say Be!'
+                    color: 'white'
