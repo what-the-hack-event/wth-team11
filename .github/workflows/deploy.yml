@@ -1,0 +1,23 @@
+# Create workflow with a manual trigger
+# Use a service principal to login to Azure using your secret and configuration variable values.
+# Use the “Deploy Azure Resource Manager (ARM) Template” action to call the Bicep template in your repo
+
+name: Deploy Bicep Template
+
+on:
+  workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - uses: azure/login@v1
+          with:
+                creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
+        - name: Deploy ARM Template
+          uses: Azure/arm-deploy@v1
+          with:
+            resourceGroupName: ${{ secrets.AZURE_RESOURCE_GROUP }}
+            template: ./azuredeploy.json
+            parameters: ./azuredeploy.parameters.json
