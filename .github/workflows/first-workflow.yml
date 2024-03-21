@@ -10,9 +10,10 @@ jobs:
             - run: echo "step1"
             - run: echo "step2"
     job2:
+        name: CowAction
         runs-on: ubuntu-latest
         steps:
             - uses: mscoutermarsh/cowsays-action@master
               with:
                 text: 'Giannis and Vijay say Be!'
-                color: 'red'
+                color: 'white'
