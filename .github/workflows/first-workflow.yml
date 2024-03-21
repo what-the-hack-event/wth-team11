@@ -11,6 +11,7 @@ jobs:
             - run: echo "step2"
     job2:
         name: CowAction
+        needs: job1
         runs-on: ubuntu-latest
         steps:
             - uses: mscoutermarsh/cowsays-action@master
