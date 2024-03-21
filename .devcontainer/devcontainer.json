@@ -6,5 +6,17 @@
 			"installBicep": true,
 			"version": "latest"
 		}
-	}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot"
+			]
+		}
+	},
+	"postCreateCommand": [
+		"dotnet restore ./Application",
+		"dotnet add ./Application package Newtonsoft.Json",
+		"dotnet add ./Application package Microsoft.EntityFrameworkCore"
+	]
 }
