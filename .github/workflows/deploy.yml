@@ -20,4 +20,3 @@ jobs:
           with:
             resourceGroupName: ${{ vars.AZURE_RESOURCE_GROUP }}
             template: ./InfrastructureAsCode/main.bicep
-            parameters: ./azuredeploy.parameters.json
