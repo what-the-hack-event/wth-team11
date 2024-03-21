@@ -4,7 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
-  <!-- https://github.com/NuGet/Home/issues/4412 -->
+  <!-- https://github.com/NuGet/Home/issues/4412 
+  -->
 
 
   <ItemGroup>
