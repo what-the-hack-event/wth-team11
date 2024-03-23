@@ -20,7 +20,7 @@ name: Build and push Docker images
 on:
     push:
         branches:
-            - master
+            - main
 
 env:
     registryName: 2dzovmpumhpvewthreg.azurecr.io
