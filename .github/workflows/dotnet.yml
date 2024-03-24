@@ -19,7 +19,6 @@ on:
 jobs:
   build-and-test-app:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
 
@@ -40,7 +39,6 @@ jobs:
   build-and-push-app-image:
       needs: build-and-test-app
       runs-on: ubuntu-latest
-
       steps:
           - name: Checkout repository
             uses: actions/checkout@v2
@@ -55,25 +53,30 @@ jobs:
             run: docker push ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
            
   deploy-to-dev:
-  needs: build-and-push-app-image
-  runs-on: ubuntu-latest
-  steps:
-  - name: Login to Azure
-    uses: azure/login@v1
-    with:
-      creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
-
-  - name: Deploy to Dev
-    uses: azure/webapps-deploy@v2
-    with:
-      app-name: uud7b4siptma4-dev
-      images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
+    needs: build-and-push-app-image
+    runs-on: ubuntu-latest
+    environment:
+      name: 'dev'
+      url: http://uud7b4siptma4-test.azurewebsites.net
+      reviewers: ['gianniskbakos']        
+    steps:
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
+        
+    - name: Deploy to Dev
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: uud7b4siptma4-dev
+        images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
 
 deploy-to-test:
-  needs: deploy-to-dev
+  needs: deploy-to-test
+  runs-on: ubuntu-latest
   environment:
     name: 'test'
-    url: <test-app-url>
+    url: http://uud7b4siptma4-test.azurewebsites.net
     reviewers: ['gianniskbakos']
   steps:
   - name: Deploy to Test
@@ -83,7 +86,7 @@ deploy-to-test:
       images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
 
 deploy-to-prod:
-  needs: deploy-to-test
+  needs: deploy-to-prod
   environment:
     name: 'prod'
     url: <prod-app-url>
