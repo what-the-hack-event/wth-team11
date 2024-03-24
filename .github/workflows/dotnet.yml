@@ -36,7 +36,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj
 
-  build-and-push-app-image:
+  build-and-push-app-image-to-acr:
       needs: build-and-test-app
       runs-on: ubuntu-latest
       steps:
@@ -53,7 +53,7 @@ jobs:
             run: docker push ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
            
   deploy-to-dev:
-    needs: build-and-push-app-image
+    needs: build-and-push-app-image-to-acr
     runs-on: ubuntu-latest
     environment:
       name: 'dev'
@@ -64,7 +64,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
-        
+
     - name: Deploy to Dev
       uses: azure/webapps-deploy@v2
       with:
@@ -72,7 +72,7 @@ jobs:
         images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
 
 deploy-to-test:
-  needs: deploy-to-test
+  needs: deploy-to-dev
   runs-on: ubuntu-latest
   environment:
     name: 'test'
@@ -86,7 +86,7 @@ deploy-to-test:
       images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
 
 deploy-to-prod:
-  needs: deploy-to-prod
+  needs: deploy-to-test
   environment:
     name: 'prod'
     url: <prod-app-url>
