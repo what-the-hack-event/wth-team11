@@ -23,7 +23,7 @@ on:
             - main
 
 env:
-    registryName: 2dzovmpumhpvewthreg.azurecr.io
+    registryName: uud7b4siptma4wthreg.azurecr.io
     repositoryName: wth/dotnetcoreapp
     dockerFolderPath: Application/src/RazorPagesTestSample
     tag: ${{ github.run_number }}
