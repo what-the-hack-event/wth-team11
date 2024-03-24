@@ -69,7 +69,7 @@ jobs:
       with:
         app-name: uud7b4siptma4-dev
         images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
-        
+
   deploy-to-test:
     needs: deploy-to-dev
     runs-on: ubuntu-latest
@@ -85,6 +85,7 @@ jobs:
 
   deploy-to-prod:
     needs: deploy-to-test
+    runs-on: ubuntu-latest
     environment:
       name: 'prod'
       url: http://uud7b4siptma4-prod.azurewebsites.net
