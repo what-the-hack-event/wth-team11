@@ -87,7 +87,7 @@ deploy-to-prod:
   needs: deploy-to-test
   environment:
     name: 'prod'
-    url: <prod-app-url>
+    url: http://uud7b4siptma4-prod.azurewebsites.net
   steps:
   - name: Deploy to Prod
     uses: azure/webapps-deploy@v2
