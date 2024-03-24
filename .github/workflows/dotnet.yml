@@ -77,6 +77,10 @@ jobs:
       name: 'test'
       url: http://uud7b4siptma4-test.azurewebsites.net
     steps:
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
     - name: Deploy to Test
       uses: azure/webapps-deploy@v2
       with:
@@ -90,6 +94,10 @@ jobs:
       name: 'prod'
       url: http://uud7b4siptma4-prod.azurewebsites.net
     steps:
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
     - name: Deploy to Prod
       uses: azure/webapps-deploy@v2
       with:
