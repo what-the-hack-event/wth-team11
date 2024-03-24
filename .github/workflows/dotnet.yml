@@ -69,28 +69,28 @@ jobs:
       with:
         app-name: uud7b4siptma4-dev
         images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
+        
+  deploy-to-test:
+    needs: deploy-to-dev
+    runs-on: ubuntu-latest
+    environment:
+      name: 'test'
+      url: http://uud7b4siptma4-test.azurewebsites.net
+    steps:
+    - name: Deploy to Test
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: uud7b4siptma4-test
+        images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
 
-deploy-to-test:
-  needs: deploy-to-dev
-  runs-on: ubuntu-latest
-  environment:
-    name: 'test'
-    url: http://uud7b4siptma4-test.azurewebsites.net
-  steps:
-  - name: Deploy to Test
-    uses: azure/webapps-deploy@v2
-    with:
-      app-name: uud7b4siptma4-test
-      images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
-
-deploy-to-prod:
-  needs: deploy-to-test
-  environment:
-    name: 'prod'
-    url: http://uud7b4siptma4-prod.azurewebsites.net
-  steps:
-  - name: Deploy to Prod
-    uses: azure/webapps-deploy@v2
-    with:
-      app-name: uud7b4siptma4-prod
-      images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}    
+  deploy-to-prod:
+    needs: deploy-to-test
+    environment:
+      name: 'prod'
+      url: http://uud7b4siptma4-prod.azurewebsites.net
+    steps:
+    - name: Deploy to Prod
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: uud7b4siptma4-prod
+        images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
